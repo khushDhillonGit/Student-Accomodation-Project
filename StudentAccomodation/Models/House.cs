@@ -26,5 +26,8 @@ namespace StudentAccomodation.Models
 
         [Required]
         public int postalCode { get; set; }
+
+        //one house can contain many 
+        public List<Student> Students { get; set; }
     }
 }
