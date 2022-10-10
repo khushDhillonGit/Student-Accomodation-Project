@@ -7,6 +7,8 @@ namespace StudentAccomodation.Models
         [Required]
         public int StudentId { get; set; }
 
+        public int HouseID { get; set; }
+
         [Required]
         public string FirstName { get; set; }
 
