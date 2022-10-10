@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using StudentAccomodation.Data;
 
@@ -11,9 +12,10 @@ using StudentAccomodation.Data;
 namespace StudentAccomodation.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20221010145415_addedrelation1")]
+    partial class addedrelation1
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -270,7 +272,7 @@ namespace StudentAccomodation.Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("HouseID")
+                    b.Property<int?>("HouseId")
                         .HasColumnType("int");
 
                     b.Property<string>("LastName")
@@ -283,7 +285,7 @@ namespace StudentAccomodation.Data.Migrations
 
                     b.HasKey("StudentId");
 
-                    b.HasIndex("HouseID");
+                    b.HasIndex("HouseId");
 
                     b.ToTable("Students");
                 });
@@ -343,9 +345,7 @@ namespace StudentAccomodation.Data.Migrations
                 {
                     b.HasOne("StudentAccomodation.Models.House", "House")
                         .WithMany("Students")
-                        .HasForeignKey("HouseID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("HouseId");
 
                     b.Navigation("House");
                 });
