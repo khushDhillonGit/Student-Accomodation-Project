@@ -28,7 +28,7 @@ namespace StudentAccomodation.Controllers
             var applicationDbContext = _context.Students.Include(s => s.House);
             return View(await applicationDbContext.ToListAsync());
         }
-
+        [AllowAnonymous]
         // GET: Students/Details/5
         public async Task<IActionResult> Details(int? id)
         {

@@ -5,10 +5,12 @@
 }
 
 <h1>Student Services</h1>
-
-<p>
-    <a asp-action="Create">Register To New Rental House</a>
-</p>
+@if (User.Identity.IsAuthenticated)
+{
+    <p>
+        <a asp-action="Create">Register To New Rental House</a>
+    </p>
+}
 <table class="table">
     <thead>
         <tr>
@@ -43,9 +45,14 @@
                 @Html.DisplayFor(modelItem => item.House.HouseName)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.StudentId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.StudentId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.StudentId">Delete</a>
+                @if (User.Identity.IsAuthenticated)
+                    {
+                        <a asp-action="Edit" asp-route-id="@item.StudentId">Edit</a> 
+                        <a asp-action="Delete" asp-route-id="@item.StudentId">Delete</a>
+                    }
+                    
+                <a asp-action="Details" asp-route-id="@item.StudentId">Details</a>
+                
             </td>
         </tr>
 }
