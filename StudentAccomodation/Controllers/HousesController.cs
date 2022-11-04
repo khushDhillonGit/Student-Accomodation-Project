@@ -29,6 +29,7 @@ namespace StudentAccomodation.Controllers
         }
 
         // GET: Houses/Details/5
+        [AllowAnonymous]
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null || _context.Houses == null)

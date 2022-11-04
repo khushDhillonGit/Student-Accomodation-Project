@@ -5,10 +5,13 @@
 }
 
 <h1>House</h1>
+@if (User.Identity.IsAuthenticated)
+{
 
-<p>
-    <a asp-action="Create">Add Your Rental Property</a>
-</p>
+    <p>
+        <a asp-action="Create">Add Your Rental Property</a>
+    </p>
+}
 <table class="table">
     <thead>
         <tr>
@@ -55,9 +58,13 @@
                 @Html.DisplayFor(modelItem => item.postalCode)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.HouseId">Edit</a> |
+                @if (User.Identity.IsAuthenticated)
+                    {
+                        <a asp-action="Edit" asp-route-id="@item.HouseId">Edit</a> 
+                        <a asp-action="Delete" asp-route-id="@item.HouseId">Delete</a>
+                    }
                 <a asp-action="Details" asp-route-id="@item.HouseId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.HouseId">Delete</a>
+                
             </td>
         </tr>
 }
