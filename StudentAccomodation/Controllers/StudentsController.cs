@@ -51,6 +51,7 @@ namespace StudentAccomodation.Controllers
         // GET: Students/Create
         public IActionResult Create()
         {
+            //string url = HttpContext.Connection.LocalIpAddress.
             ViewData["HouseID"] = new SelectList(_context.Houses, "HouseId", "HouseName","MonthRent");
             return View();
         }
@@ -68,7 +69,7 @@ namespace StudentAccomodation.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["HouseID"] = new SelectList(_context.Houses, "HouseId", "HouseName", student.HouseID);
+            ViewData["HouseID"] = new SelectList(_context.Houses, "HouseId","HouseName", student.HouseID);
             return View(student);
         }
 
