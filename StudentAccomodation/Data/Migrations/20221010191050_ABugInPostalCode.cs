@@ -9,7 +9,7 @@ namespace StudentAccomodation.Data.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.AlterColumn<string>(
-                name: "postalCode",
+                name: "PostalCode",
                 table: "Houses",
                 type: "nvarchar(max)",
                 nullable: false,
@@ -20,7 +20,7 @@ namespace StudentAccomodation.Data.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.AlterColumn<int>(
-                name: "postalCode",
+                name: "PostalCode",
                 table: "Houses",
                 type: "int",
                 nullable: false,
