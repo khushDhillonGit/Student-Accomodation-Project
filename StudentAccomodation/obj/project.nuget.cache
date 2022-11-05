@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "wgG/OASUO8oTaAq4S91+KQ2zPNSs7kw1ewZY9k+gnfMwqdYceGI4e+IsqLEhBNMD35kUalf0LzkEZslrx4sCnA==",
+  "dgSpecHash": "JVNH2RokKhnVs4XY8cB81DPduBuDVTyO3C2tOauqZPD3WlNfjTGwlC0TayBtR7vZMn+T9jfga/Lk6nIaCaOiJg==",
   "success": true,
   "projectFilePath": "C:\\Users\\khush\\OneDrive\\Documents\\ASP .NET\\StudentAccomodation\\StudentAccomodation\\StudentAccomodation.csproj",
   "expectedPackageFiles": [
@@ -8,6 +8,7 @@
     "C:\\Users\\khush\\.nuget\\packages\\messagepack\\2.1.152\\messagepack.2.1.152.nupkg.sha512",
     "C:\\Users\\khush\\.nuget\\packages\\messagepack.annotations\\2.1.152\\messagepack.annotations.2.1.152.nupkg.sha512",
     "C:\\Users\\khush\\.nuget\\packages\\messagepackanalyzer\\2.1.152\\messagepackanalyzer.2.1.152.nupkg.sha512",
+    "C:\\Users\\khush\\.nuget\\packages\\microsoft.aspnetcore.authentication.google\\6.0.10\\microsoft.aspnetcore.authentication.google.6.0.10.nupkg.sha512",
     "C:\\Users\\khush\\.nuget\\packages\\microsoft.aspnetcore.cryptography.internal\\6.0.10\\microsoft.aspnetcore.cryptography.internal.6.0.10.nupkg.sha512",
     "C:\\Users\\khush\\.nuget\\packages\\microsoft.aspnetcore.cryptography.keyderivation\\6.0.10\\microsoft.aspnetcore.cryptography.keyderivation.6.0.10.nupkg.sha512",
     "C:\\Users\\khush\\.nuget\\packages\\microsoft.aspnetcore.diagnostics.entityframeworkcore\\6.0.6\\microsoft.aspnetcore.diagnostics.entityframeworkcore.6.0.6.nupkg.sha512",
