@@ -244,14 +244,14 @@ namespace StudentAccomodation.Data.Migrations
                     b.Property<int>("MonthRent")
                         .HasColumnType("int");
 
-                    b.Property<string>("city")
+                    b.Property<string>("City")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("postalCode")
+                    b.Property<int>("PostalCode")
                         .HasColumnType("int");
 
-                    b.Property<string>("street")
+                    b.Property<string>("Street")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
