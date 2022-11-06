@@ -52,24 +52,34 @@ namespace StudentAccomodation.Controllers
         public IActionResult Create()
         {
             //string url = HttpContext.Connection.LocalIpAddress.
-            ViewData["HouseID"] = new SelectList(_context.Houses, "HouseId", "HouseName","MonthRent");
+
+            ViewData["HouseId"] = new SelectList(_context.Houses, "HouseId", "HouseName", "MonthRent");
             return View();
         }
+        public JsonResult GetHouse(int id) {
+
+            var result = from r in _context.Houses
+                         where r.HouseId == id
+                         select new { r.HouseNumber, r.Street, r.City, r.PostalCode, r.MonthRent };
+            return Json(result);
+        } 
 
         // POST: Students/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("StudentId,HouseID,FirstName,LastName,StudentEmail")] Student student)
+        public async Task<IActionResult> Create([Bind("StudentId,HouseId,FirstName,LastName,StudentEmail")] Student student)
         {
+            
             if (ModelState.IsValid)
             {
                 _context.Add(student);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["HouseID"] = new SelectList(_context.Houses, "HouseId","HouseName", student.HouseID);
+            
+            ViewData["HouseId"] = new SelectList(_context.Houses, "HouseId","HouseName", student.HouseId);
             return View(student);
         }
 
@@ -86,7 +96,7 @@ namespace StudentAccomodation.Controllers
             {
                 return NotFound();
             }
-            ViewData["HouseID"] = new SelectList(_context.Houses, "HouseId", "HouseName", student.HouseID);
+            ViewData["HouseId"] = new SelectList(_context.Houses, "HouseId", "HouseName", student.HouseId);
             return View(student);
         }
 
@@ -95,7 +105,7 @@ namespace StudentAccomodation.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("StudentId,HouseID,FirstName,LastName,StudentEmail")] Student student)
+        public async Task<IActionResult> Edit(int id, [Bind("StudentId,HouseId,FirstName,LastName,StudentEmail")] Student student)
         {
             if (id != student.StudentId)
             {
@@ -122,7 +132,7 @@ namespace StudentAccomodation.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["HouseID"] = new SelectList(_context.Houses, "HouseId", "HouseName", student.HouseID);
+            ViewData["HouseId"] = new SelectList(_context.Houses, "HouseId", "HouseName", student.HouseId);
             return View(student);
         }
 

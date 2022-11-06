@@ -15,7 +15,7 @@ namespace StudentAccomodation.Data.Migrations
             migrationBuilder.RenameColumn(
                 name: "HouseId",
                 table: "Students",
-                newName: "HouseID");
+                newName: "HouseId");
 
             migrationBuilder.RenameIndex(
                 name: "IX_Students_HouseId",
@@ -23,7 +23,7 @@ namespace StudentAccomodation.Data.Migrations
                 newName: "IX_Students_HouseID");
 
             migrationBuilder.AlterColumn<int>(
-                name: "HouseID",
+                name: "HouseId",
                 table: "Students",
                 type: "int",
                 nullable: false,
@@ -35,7 +35,7 @@ namespace StudentAccomodation.Data.Migrations
             migrationBuilder.AddForeignKey(
                 name: "FK_Students_Houses_HouseID",
                 table: "Students",
-                column: "HouseID",
+                column: "HouseId",
                 principalTable: "Houses",
                 principalColumn: "HouseId",
                 onDelete: ReferentialAction.Cascade);
@@ -48,7 +48,7 @@ namespace StudentAccomodation.Data.Migrations
                 table: "Students");
 
             migrationBuilder.RenameColumn(
-                name: "HouseID",
+                name: "HouseId",
                 table: "Students",
                 newName: "HouseId");
 

@@ -1,20 +1,19 @@
 ﻿@model StudentAccomodation.Models.Student
 
+
 @{
     ViewData["Title"] = "Register As Student";
 }
-
 <h1>Register</h1>
-
 <h4>Student</h4>
-<hr />
+<hr/>
 <div class="row">
     <div class="col-md-4">
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="HouseID" class="control-label"></label>
-                <select asp-for="HouseID" class ="form-control" asp-items="ViewBag.HouseID"></select>
+                <label asp-for="HouseId" class="control-label"></label>
+                <select asp-for="HouseId" class ="form-control select-event" asp-items="ViewBag.HouseID"></select>
             </div>
             <div class="form-group">
                 <label asp-for="FirstName" class="control-label"></label>
@@ -37,7 +36,21 @@
         </form>
     </div>
 </div>
-
+<p class="details">
+</p>
+<script>
+var select = document.querySelector(".select-event");
+select.addEventListener("change", function() {
+    $.getJSON("/Students/GetHouse/" + select.value, function (data) {
+            var items = '<table><tr><th>House Number</th><th>Street</th><th>City</th><th>Postal Code</th><th>Month Rent</th></tr>';  
+            $.each(data, function (i, house) {  
+                items += "<tr><td>" + house.houseNumber + "</td><td>" + house.street + "</td><td>" + house.city+ "</td><td>" + house.postalCode+ "</td><td>" + house.monthRent+ "</td></tr>";  
+            });  
+            items += "</table>"; 
+        $(".details").html(items);
+        });  
+});
+</script>
 <div>
     <a asp-action="Index">Back to List</a>
 </div>

@@ -24,7 +24,7 @@
                 @Html.DisplayNameFor(model => model.StudentEmail)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.House)
+                @Html.DisplayNameFor(model => model.House.HouseNumber) 
             </th>
             <th></th>
         </tr>
@@ -42,7 +42,8 @@
                 @Html.DisplayFor(modelItem => item.StudentEmail)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.House.HouseName)
+                <a href="@Url.Action("Details","Houses",new {id = item.HouseId})">
+                @Html.DisplayFor(modelItem => item.House.HouseName) </a>
             </td>
             <td>
                 @if (User.Identity.IsAuthenticated)

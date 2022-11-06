@@ -272,7 +272,7 @@ namespace StudentAccomodation.Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("HouseID")
+                    b.Property<int>("HouseId")
                         .HasColumnType("int");
 
                     b.Property<string>("LastName")
@@ -285,7 +285,7 @@ namespace StudentAccomodation.Data.Migrations
 
                     b.HasKey("StudentId");
 
-                    b.HasIndex("HouseID");
+                    b.HasIndex("HouseId");
 
                     b.ToTable("Students");
                 });
@@ -345,7 +345,7 @@ namespace StudentAccomodation.Data.Migrations
                 {
                     b.HasOne("StudentAccomodation.Models.House", "House")
                         .WithMany("Students")
-                        .HasForeignKey("HouseID")
+                        .HasForeignKey("HouseId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
