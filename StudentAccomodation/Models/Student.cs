@@ -9,7 +9,7 @@ namespace StudentAccomodation.Models
         public int StudentId { get; set; }
 
         [Display(Name = "House Name")]
-        public int HouseID { get; set; }
+        public int HouseId { get; set; }
 
         [Required]
         [Display(Name = "First Name")]
