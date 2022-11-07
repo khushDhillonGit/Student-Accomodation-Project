@@ -32,12 +32,14 @@ body {
     border-radius: 2px;
     box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 }
-
+.text-sec-color {
+    color: #445f76;
+}
 .log-link {
     border: none;
-    border-radius:2px;
-    background-color: #f16d45;
-    color: white!important;
+    border-radius: 2px;
+    background-color: #445f76;
+    color: white !important;
 }
 
 main {
@@ -49,4 +51,16 @@ footer {
 }
 .footer {
     position:relative!important;
+}
+.main-text-col h1 {
+    margin-top:32px;
+    margin-bottom:32px;
+    font-weight: 700;
+    line-height: 1.05;
+    letter-spacing: -0.5px;
+}
+
+.main-text-col p {
+    font-size:20px;
+    line-height:1.4;
 }
