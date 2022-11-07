@@ -36,9 +36,5 @@ namespace StudentAccomodation.Models
         //one house can contain many 
         //public List<Student>? Students { get; set; }
         public List<Student>? Students { get; set; }
-
-        public string ToString() {
-            return String.Format("HouseName = {0}",HouseName);
-        }
     }
 }
