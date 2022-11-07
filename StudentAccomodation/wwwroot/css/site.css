@@ -16,7 +16,10 @@ body {
     font-weight: 400;
     color: #555;
     overflow-x: hidden;
-    margin-bottom: 60px;
+    height:100vh;
+    width:100vw;
+    display:flex;
+    flex-direction:column;
 }
 
 .navbar-brand {
@@ -35,4 +38,15 @@ body {
     border-radius:2px;
     background-color: #f16d45;
     color: white!important;
+}
+
+main {
+    flex: 1 1 auto;
+    background-color: #dfebd9;
+}
+footer {
+    flex:0 1 auto;
+}
+.footer {
+    position:relative!important;
 }
