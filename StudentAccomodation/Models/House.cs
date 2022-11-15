@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.Text.RegularExpressions;
 
 namespace StudentAccomodation.Models
 {
@@ -12,6 +13,25 @@ namespace StudentAccomodation.Models
         [Required]
         [Display(Name = "Name of House")]
         public string HouseName { get; set; }
+
+        public string? Image { get; set; } 
+
+        [Required]
+        [Display(Name = "Owner's Name")]
+        [RegularExpression(@"/^[a - z,.'-]+$/i")]
+        public string OwnerName { get; set; }
+
+
+        [Required]
+        [DataType(DataType.PhoneNumber)]
+        [Display(Name = "Owner's Contact")]
+        [RegularExpression(@"^(\+\d{1, 2}\s)?\(?\d{3}\)?[\s.-]?\d{ 3}[\s.-]?\d{ 4}$")]
+        public string OwnerPhone { get; set; }
+
+        [Required]
+        [Display(Name = "Occupancy Available")]
+        [Range(minimum: 0, maximum: 10)]
+        public int Occupancy { get; set; }
 
         [Required]
         [Range(minimum: 400, maximum: 700)]
