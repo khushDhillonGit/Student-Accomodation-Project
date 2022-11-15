@@ -59,7 +59,7 @@ namespace StudentAccomodation.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("HouseId,HouseName,MonthRent,HouseNumber,Street,City,PostalCode")] House house)
+        public async Task<IActionResult> Create([Bind("HouseId,HouseName,OwnerName,OwnerPhone,Occupancy,MonthRent,HouseNumber,Street,City,PostalCode")] House house)
         {
             if (ModelState.IsValid)
             {
@@ -91,7 +91,7 @@ namespace StudentAccomodation.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("HouseId,HouseName,MonthRent,HouseNumber,Street,City,PostalCode")] House house)
+        public async Task<IActionResult> Edit(int id, [Bind("HouseId,HouseName,OwnerName,OwnerPhone,Occupancy,MonthRent,HouseNumber,Street,City,PostalCode")] House house)
         {
             if (id != house.HouseId)
             {
