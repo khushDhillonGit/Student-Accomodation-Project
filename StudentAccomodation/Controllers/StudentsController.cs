@@ -78,7 +78,7 @@ namespace StudentAccomodation.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            
+                
             ViewData["HouseId"] = new SelectList(_context.Houses, "HouseId","HouseName", student.HouseId);
             return View(student);
         }

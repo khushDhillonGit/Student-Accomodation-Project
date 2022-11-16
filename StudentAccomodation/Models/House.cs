@@ -18,14 +18,14 @@ namespace StudentAccomodation.Models
 
         [Required]
         [Display(Name = "Owner's Name")]
-        [RegularExpression(@"/^[a - z,.'-]+$/i")]
+        [RegularExpression(@"^[a-zA-Z''-'\s]{1,40}$")]
         public string OwnerName { get; set; }
 
 
         [Required]
         [DataType(DataType.PhoneNumber)]
         [Display(Name = "Owner's Contact")]
-        [RegularExpression(@"^(\+\d{1, 2}\s)?\(?\d{3}\)?[\s.-]?\d{ 3}[\s.-]?\d{ 4}$")]
+        [RegularExpression(@"^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]?\d{3}[\s.-]?\d{4}$")]
         public string OwnerPhone { get; set; }
 
         [Required]
