@@ -3,8 +3,8 @@
 @{
     ViewData["Title"] = "Index";
 }
-
-<h1>House Hoo</h1>
+<div class="container mt-5">
+<h1 class="text-center heading-primary">Available Homes</h1>
 @if (User.Identity.IsAuthenticated)
 {
 
@@ -12,61 +12,43 @@
         <a asp-action="Create">Add Your Rental Property</a>
     </p>
 }
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.HouseName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.MonthRent)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.HouseNumber)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Street)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.City)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.PostalCode)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.HouseName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.MonthRent)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.HouseNumber)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Street)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.City)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.PostalCode)
-            </td>
-            <td>
-                @if (User.Identity.IsAuthenticated)
+<div class="row row-cols-sm-1 row-cols-md-3 row-cols-lg-4">
+    @foreach(var item in Model)
+    {
+        <div class="home col">
+            <img src="~/img/houses/@Html.DisplayFor(modelItem => item.Image)" alt="house-image">
+            <div class="home-content">
+                <p class="home-title">@Html.DisplayFor(modelItem => item.HouseName)</p>
+                <ul class="home-list">
+                    <li class="home-attri">
+                        <span> <strong>@Html.DisplayFor(modelItem => item.MonthRent)</strong> /Month</span>
+                    </li>
+                    <li class="home-attri">
+                        <span> Occupancy Available: @Html.DisplayFor(modelItem => item.Occupancy)</span>
+                    </li>
+                    <li class="home-attri">
+                        <span>Address: @Html.DisplayFor(modelItem => item.HouseNumber), @Html.DisplayFor(modelItem => item.Street) </span>
+                    </li>
+                    <li class="home-attri">
+                        <span>@Html.DisplayFor(modelItem => item.City), @Html.DisplayFor(modelItem => item.PostalCode)</span>
+                    </li>
+                    <li class="home-attri">
+                        <span>Owner: @Html.DisplayFor(modelItem => item.OwnerName)</span>
+                    </li>
+                    <li class="home-attri">
+                        <span>Contact: @Html.DisplayFor(modelItem => item.OwnerPhone)</span>
+                    </li>
+                </ul>
+                <div class="row">
+                    @if (User.Identity.IsAuthenticated)
                     {
-                        <a asp-action="Edit" asp-route-id="@item.HouseId">Edit</a> 
-                        <a asp-action="Delete" asp-route-id="@item.HouseId">Delete</a>
+                        <a class="col" asp-action="Edit" asp-route-id="@item.HouseId">Edit</a> 
+                        <a class="col" asp-action="Delete" asp-route-id="@item.HouseId">Delete</a>
                     }
-                <a asp-action="Details" asp-route-id="@item.HouseId">Details</a> |
-                
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+                    <a class="col" asp-action="Details" asp-route-id="@item.HouseId">Details</a> 
+                </div>
+            </div>
+        </div>
+    }
+</div>
+</div>
