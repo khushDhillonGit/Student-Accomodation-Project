@@ -59,7 +59,7 @@ namespace StudentAccomodation.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("HouseId,HouseName,OwnerName,OwnerPhone,Occupancy,MonthRent,HouseNumber,Street,City,PostalCode")] House house,IFormFile Image)
+        public async Task<IActionResult> Create([Bind("HouseId,HouseName,OwnerName,OwnerPhone,Occupancy,MonthRent,HouseNumber,Street,City,PostalCode")] House house,IFormFile? Image)
         {
             if (ModelState.IsValid)
             {
@@ -167,14 +167,14 @@ namespace StudentAccomodation.Controllers
 
             var fileName = Guid.NewGuid().ToString() + "-" + Image.FileName;
 
-            var uploadPath = System.IO.Directory.GetCurrentDirectory() + "\\wwwroot\\img\\products\\" + fileName;
+            var uploadPath = System.IO.Directory.GetCurrentDirectory() + "\\wwwroot\\img\\houses\\" + fileName;
 
-            using (var stream = new FileStream(uploadPath, FileMode.Create)) {
+            using (var stream = new FileStream(uploadPath, FileMode.Create))
+            {
                 Image.CopyTo(stream);
             }
-
             return fileName;
-        
+
         }
 
         private bool HouseExists(int id)
