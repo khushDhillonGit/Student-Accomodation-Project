@@ -21,31 +21,35 @@
                 <p class="home-title">@Html.DisplayFor(modelItem => item.HouseName)</p>
                 <ul class="home-list">
                     <li class="home-attri">
+                        <ion-icon class="home-icon" name="cash-outline"></ion-icon>
                         <span> <strong>@Html.DisplayFor(modelItem => item.MonthRent)</strong> /Month</span>
                     </li>
                     <li class="home-attri">
-                        <span> Occupancy Available: @Html.DisplayFor(modelItem => item.Occupancy)</span>
+                        <ion-icon class="home-icon"name="people-outline"></ion-icon>
+                        <span> @Html.DisplayFor(modelItem => item.Occupancy) Rooms</span>
                     </li>
                     <li class="home-attri">
-                        <span>Address: @Html.DisplayFor(modelItem => item.HouseNumber), @Html.DisplayFor(modelItem => item.Street) </span>
+                        <ion-icon class="home-icon" name="location-outline"></ion-icon>
+                        <span>@Html.DisplayFor(modelItem => item.HouseNumber), @Html.DisplayFor(modelItem => item.Street) </span>
                     </li>
-                    <li class="home-attri">
+                    <li class="home-attri left-margin-card">
                         <span>@Html.DisplayFor(modelItem => item.City), @Html.DisplayFor(modelItem => item.PostalCode)</span>
                     </li>
                     <li class="home-attri">
-                        <span>Owner: @Html.DisplayFor(modelItem => item.OwnerName)</span>
+                        <ion-icon class="home-icon"name="call-outline"></ion-icon>
+                        <span>@Html.DisplayFor(modelItem => item.OwnerName), @Html.DisplayFor(modelItem => item.OwnerPhone)</span>
                     </li>
-                    <li class="home-attri">
-                        <span>Contact: @Html.DisplayFor(modelItem => item.OwnerPhone)</span>
+                    <li class="home-attri left-margin-card">
+                        
                     </li>
                 </ul>
-                <div class="row">
+                <div class="row justify-content-evenly">
                     @if (User.Identity.IsAuthenticated)
                     {
-                        <a class="col" asp-action="Edit" asp-route-id="@item.HouseId">Edit</a> 
-                        <a class="col" asp-action="Delete" asp-route-id="@item.HouseId">Delete</a>
+                        <a class="col-3 link-card btn-success" asp-action="Edit" asp-route-id="@item.HouseId">Edit</a> 
+                        <a class="col-3 link-card btn-danger" asp-action="Delete" asp-route-id="@item.HouseId">Delete</a>
                     }
-                    <a class="col" asp-action="Details" asp-route-id="@item.HouseId">Details</a> 
+                    <a class="col-3 link-card details-link" asp-action="Details" asp-route-id="@item.HouseId">Details</a> 
                 </div>
             </div>
         </div>
