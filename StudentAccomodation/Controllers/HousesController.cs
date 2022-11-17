@@ -95,7 +95,7 @@ namespace StudentAccomodation.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("HouseId,HouseName,OwnerName,OwnerPhone,Occupancy,MonthRent,HouseNumber,Street,City,PostalCode")] House house)
+        public async Task<IActionResult> Edit(int id, [Bind("HouseId,HouseName,Image,OwnerName,OwnerPhone,Occupancy,MonthRent,HouseNumber,Street,City,PostalCode")] House house,IFormFile? Image)
         {
             if (id != house.HouseId)
             {
@@ -104,6 +104,14 @@ namespace StudentAccomodation.Controllers
 
             if (ModelState.IsValid)
             {
+
+                if (Image != null)
+                {
+                    var imgName = SaveImage(Image);
+                    house.Image = imgName;
+                }
+                
+
                 try
                 {
                     _context.Update(house);
