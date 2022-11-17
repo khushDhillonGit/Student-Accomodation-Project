@@ -77,7 +77,7 @@ footer {
 .home-title {
     font-size: 24px;
     font-weight: 600;
-    margin-bottom: 32px;
+    margin-bottom: 20px;
     text-align:center;
 }
 
@@ -85,8 +85,9 @@ footer {
     list-style: none;
     display: flex;
     flex-direction: column;
-    gap: 1rem;
+    gap: 8px;
     padding-left:20px;
+    margin-bottom:8px;
 }
 
 .home-attri {
@@ -142,4 +143,9 @@ strong {
 
 .details-link {
     background-color: #445f76;
+    color: white;
 }
+    .details-link:hover {
+        background-color: #3e5970;
+        color:white;
+    }
