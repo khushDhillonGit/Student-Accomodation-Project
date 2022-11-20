@@ -1,7 +1,3 @@
-html {
-  font-size: 14px;
-}
-
 @media (min-width: 768px) {
   html {
     font-size: 16px;
@@ -9,10 +5,147 @@ html {
 }
 
 html {
-  position: relative;
-  min-height: 100%;
+    position: relative;
+    min-height: 100%;
+    overflow-x: hidden;
 }
 
 body {
-  margin-bottom: 60px;
+    font-family: "Rubik", sans-serif;
+    line-height: 1;
+    font-weight: 400;
+    color: #555;
+    overflow-x: hidden;
+    height:100vh;
+    width:100vw;
+    display:flex;
+    flex-direction:column;
 }
+
+.navbar-brand {
+    width:8%;
+}
+.nav-link:hover,
+.nav-link:active {
+    background-color: #84b474;
+    color: white !important;
+    border-radius: 2px;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+.text-sec-color {
+    color: #445f76;
+}
+.log-link {
+    border: none;
+    border-radius: 2px;
+    background-color: #445f76;
+    color: white !important;
+}
+
+main {
+    flex: 1 1 auto;
+    background-color: #dfebd9;
+}
+footer {
+    flex:0 1 auto;
+}
+.footer {
+    position:relative!important;
+}
+.main-text-col h1 {
+    margin-top:32px;
+    margin-bottom:32px;
+    font-weight: 700;
+    line-height: 1.05;
+    letter-spacing: -0.5px;
+}
+
+.main-text-col p {
+    font-size:20px;
+    line-height:1.4;
+}
+.heading-primary {
+    letter-spacing: -0.5px;
+    font-weight: 700;
+    color: #445f76;
+}
+
+.col {
+    padding:0 !important;
+}
+
+.home-title {
+    font-size: 24px;
+    font-weight: 600;
+    margin-bottom: 20px;
+    text-align:center;
+}
+
+.home-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding-left:20px;
+    margin-bottom:8px;
+}
+
+.home-attri {
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+}
+
+.home img {
+    width: 100%;
+}
+.left-margin-card{
+    margin-left:36px;
+}
+.home-icon {
+    height: 24px;
+    width: 24px;
+    color: green;
+    margin-right:10px; 
+}
+
+strong {
+    font-weight: 700;
+}
+
+.home {
+    box-shadow: 0 24px 48px rgba(0, 0, 0, 7.75%);
+    border-radius: 12px;
+    overflow: hidden;
+    transition: all 0.4s;
+}
+
+.home-content {
+    padding: 20px 14px;
+    background-color: white;
+    color: #3f576b;
+}
+
+
+.home:hover {
+    box-shadow: 0 32px 64px rgba(0, 0, 0, 10.75%);
+    transform: translate(0, -10px);
+}
+
+.link-card {
+    text-decoration: none;
+    padding: 9px;
+    text-align: center;
+    border-radius: 4px;
+    box-shadow: 0 4px 6px rgb(0 0 0 / 30%);
+    color:white;
+}
+
+.details-link {
+    background-color: #445f76;
+    color: white;
+}
+    .details-link:hover {
+        background-color: #3e5970;
+        color:white;
+    }

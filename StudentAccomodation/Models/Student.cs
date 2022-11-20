@@ -23,6 +23,10 @@ namespace StudentAccomodation.Models
         [Display(Name = "Student Email")]
         public string StudentEmail { get; set; }
 
+        [Required]
+        [Range(minimum:1000000,maximum:999999999)]
+        public int studentNumber { get; set; }
+
         //one student can only be in one house
         public House? House { get; set; }
     }
