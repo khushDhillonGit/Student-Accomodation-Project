@@ -4,14 +4,25 @@
     ViewData["Title"] = "Add Rental Property";
 }
 
-<h1>Add Property</h1>
+<div class="container house-container">
+<div class="form-container">
+  <div class="left-container">
+      <div>
+          <ion-icon class="icon" name="home-outline"></ion-icon>
+           <h1>Add Home</h1>
+      </div>
+    <div class="img">
+      <img src="~/create-house-img.png"/>
+    </div>
+  </div>
+  <div class="right-container">
+    <form asp-action="Create" class="create-form" enctype="multipart/form-data">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <header>
+      <h1>Ready to have some guests?</h1>
+        
+            <div class="set">
 
-<h4>House</h4>
-<hr/>
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Create" enctype="multipart/form-data">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="HouseName" class="control-label"></label>
                 <input asp-for="HouseName" class="form-control" />
@@ -19,9 +30,12 @@
             </div>
             <div class="form-group">
                 <label asp-for="Image" class="control-label"></label>
-                <input asp-for="Image" class="form-control" type="file"/>
+                <input asp-for="Image" class="form-control input-file" type="file"/>
                 <span asp-validation-for="Image" class="text-danger"></span>
             </div>
+            </div>
+            <div class="set">
+
             <div class="form-group">
                 <label asp-for="OwnerName" class="control-label"></label>
                 <input asp-for="OwnerName" class="form-control" />
@@ -32,6 +46,9 @@
                 <input asp-for="OwnerPhone" class="form-control" />
                 <span asp-validation-for="OwnerPhone" class="text-danger"></span>
             </div>
+            </div>
+            <div class="set">
+
             <div class="form-group">
                 <label asp-for="Occupancy" class="control-label"></label>
                 <input asp-for="Occupancy" class="form-control" />
@@ -42,6 +59,9 @@
                 <input asp-for="MonthRent" class="form-control" />
                 <span asp-validation-for="MonthRent" class="text-danger"></span>
             </div>
+            </div>
+            <div class="set">
+
             <div class="form-group">
                 <label asp-for="HouseNumber" class="control-label"></label>
                 <input asp-for="HouseNumber" class="form-control" />
@@ -52,7 +72,9 @@
                 <input asp-for="Street" class="form-control" />
                 <span asp-validation-for="Street" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            </div>
+            <div class="set">
+                <div class="form-group">
                 <label asp-for="City" class="control-label"></label>
                 <input asp-for="City" class="form-control" />
                 <span asp-validation-for="City" class="text-danger"></span>
@@ -62,16 +84,19 @@
                 <input asp-for="PostalCode" class="form-control" />
                 <span asp-validation-for="PostalCode" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
             </div>
-        </form>
-    </div>
+    </header>
+    <footer>
+      <div class="set">
+          <a asp-action="Index" class="btn btn-trans">Back to List</a>
+          <input type="submit" value="Create" class="details-link submit-input" />
+      </div>
+    </footer>
+    </form>
+  </div>
+</div>
 </div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
