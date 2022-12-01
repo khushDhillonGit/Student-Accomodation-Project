@@ -11,6 +11,9 @@
           <ion-icon class="icon" name="home-outline"></ion-icon>
            <h1>Add Home</h1>
       </div>
+      <div style="padding:5px;">
+          <img id="uploaded-img" src="">
+      </div>
     <div class="img">
       <img src="~/create-house-img.png"/>
     </div>
@@ -97,7 +100,28 @@
 </div>
 </div>
 
+<!-- added event listener to display selected user image on left-container-->
+<script>
+var image = document.querySelector('#uploaded-img');
+var input = document.querySelector('.input-file');
 
+input.addEventListener("change", (e) => { 
+     { 
+        image.file = input.files[0];
+        const h2 = document.createElement("h6");
+        h2.style.color = "white";
+        h2.textContent = "Your House Image!";
+        image.parentElement.appendChild(h2);
+
+        const reader = new FileReader();
+        reader.onload = (e) => { image.src = e.target.result; };
+        reader.readAsDataURL(input.files[0]);
+    }
+});
+
+
+
+</script>
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }
