@@ -247,7 +247,9 @@ strong {
         box-shadow: rgba(50, 50, 93, 0.10) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.10) 0px 18px 36px -18px inset;
     }
 
-    .right-container input,
+    .right-container input {
+        color: #425c74;
+    }
     .right-container label {
         color: white;
     }
@@ -330,4 +332,6 @@ strong {
             transition: all .25s ease-in;
         }
 
-        
+.uploaded-img {
+    border-radius:32px;
+}        
