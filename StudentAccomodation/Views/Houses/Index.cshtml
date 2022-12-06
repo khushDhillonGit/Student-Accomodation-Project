@@ -4,15 +4,29 @@
     ViewData["Title"] = "Index";
 }
 <div class="container mt-5">
-<h1 class="text-center heading-primary">Available Homes</h1>
-@if (User.Identity.IsAuthenticated)
-{
+    <div class="row gap-5 house-section">
+        <div class="img col">
+            <img class="img-fluid" src="/index-house.png"> 
+        </div>
+        <div class="col house-content">
+            <h2 class="heading-primary display-4">Home Sweet Home!</h2>
+            <p class="para-text">
+                It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using. 
+            </p>
+            <p class="para-text">
+                Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover 
+            </p>
+            <div class="row gap-4">
+                    <a asp-action="Create" class="col-4 btn btn-success">Add Home</a>
+                    <a href="#house-available-section" class="col-4 btn btn-danger">See Available Homes</a>
+            </div>
+        </div>
+    </div>
 
-    <p>
-        <a asp-action="Create">Add Your Rental Property</a>
-    </p>
-}
-<div class="row row-cols-sm-1 row-cols-md-3 row-cols-lg-4">
+<div id="house-available-section">
+
+<h1 class="text-center heading-primary">Available Homes</h1>
+<div id="home-cards" class="row row-cols-sm-1 row-cols-md-3 row-cols-lg-4">
     @foreach(var item in Model)
     {
         <div class="home col">
@@ -54,5 +68,6 @@
             </div>
         </div>
     }
+</div>
 </div>
 </div>
