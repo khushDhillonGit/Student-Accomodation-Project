@@ -141,7 +141,7 @@ namespace StudentAccomodation.Controllers
         {
             if (id == null || _context.Students == null)
             {
-                return NotFound();
+                return View("404");
             }
 
             var student = await _context.Students
@@ -149,10 +149,10 @@ namespace StudentAccomodation.Controllers
                 .FirstOrDefaultAsync(m => m.StudentId == id);
             if (student == null)
             {
-                return NotFound();
+                return View("404");
             }
 
-            return View(student);
+            return View("Delete",student);
         }
 
         // POST: Students/Delete/5

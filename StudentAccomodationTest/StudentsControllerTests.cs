@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using StudentAccomodation.Controllers;
 using StudentAccomodation.Data;
@@ -58,7 +59,7 @@ namespace StudentAccomodationTest
 
             students.Add(new Student
             {
-                StudentId = 20,
+                StudentId = 22,
                 HouseId = 2,
                 FirstName = "Rama",
                 LastName = "Daniel",
@@ -66,16 +67,53 @@ namespace StudentAccomodationTest
                 studentNumber = 1000002
             });
             foreach (var student in students) {
-                _context.Add(student);
+                _context.Students.Add(student);
             };
             _context.SaveChanges();
             controller = new StudentsController(_context);
         }
 
-        //EDIT: POST
+        
 
         //DELETE: GET
+        [TestMethod]
+        public void DeleteRecievesNull() {
 
+            var result = (ViewResult)controller.Delete(null).Result;
+            Assert.AreEqual("404", result.ViewName); 
+        }
+
+        [TestMethod]
+        public void DeleteRecievesInvalidId()
+        {
+            var result = (ViewResult)controller.Delete(-10).Result;
+            Assert.AreEqual("404", result.ViewName);
+        }
+
+        [TestMethod]
+        public void DeleteNoStudentFound()
+        {
+            var result = (ViewResult)controller.Delete(19).Result;
+            Assert.IsNull(result.Model);
+        }
+
+
+        [TestMethod]
+        public void DeleteNoStudentFoundViewReturned()
+        {
+            var result = (ViewResult)controller.Delete(19).Result;
+            Assert.AreEqual("404",result.ViewName);
+        }
+
+        [TestMethod]
+        public void DeleteCorrectViewReturned()
+        {
+            var result = (ViewResult)controller.Delete(20).Result;
+            Assert.AreEqual("Delete",result.ViewName);
+        }
+
+
+        //EDIT: POST
 
     }
 }
