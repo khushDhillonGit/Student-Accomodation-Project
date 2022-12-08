@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "JVNH2RokKhnVs4XY8cB81DPduBuDVTyO3C2tOauqZPD3WlNfjTGwlC0TayBtR7vZMn+T9jfga/Lk6nIaCaOiJg==",
+  "dgSpecHash": "BYSBOljejxAFyuj0KYEFfj57QFwIYU7FNpfktl3UPMRPaUqxxIlarACdiZY+7aF4WAJQWaG5GjtdKuxMJ7o8RQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\khush\\OneDrive\\Documents\\ASP .NET\\StudentAccomodation\\StudentAccomodation\\StudentAccomodation.csproj",
   "expectedPackageFiles": [
@@ -42,6 +42,7 @@
     "C:\\Users\\khush\\.nuget\\packages\\microsoft.entityframeworkcore.abstractions\\6.0.10\\microsoft.entityframeworkcore.abstractions.6.0.10.nupkg.sha512",
     "C:\\Users\\khush\\.nuget\\packages\\microsoft.entityframeworkcore.analyzers\\6.0.10\\microsoft.entityframeworkcore.analyzers.6.0.10.nupkg.sha512",
     "C:\\Users\\khush\\.nuget\\packages\\microsoft.entityframeworkcore.design\\6.0.10\\microsoft.entityframeworkcore.design.6.0.10.nupkg.sha512",
+    "C:\\Users\\khush\\.nuget\\packages\\microsoft.entityframeworkcore.inmemory\\6.0.0\\microsoft.entityframeworkcore.inmemory.6.0.0.nupkg.sha512",
     "C:\\Users\\khush\\.nuget\\packages\\microsoft.entityframeworkcore.relational\\6.0.10\\microsoft.entityframeworkcore.relational.6.0.10.nupkg.sha512",
     "C:\\Users\\khush\\.nuget\\packages\\microsoft.entityframeworkcore.sqlserver\\6.0.10\\microsoft.entityframeworkcore.sqlserver.6.0.10.nupkg.sha512",
     "C:\\Users\\khush\\.nuget\\packages\\microsoft.entityframeworkcore.tools\\6.0.10\\microsoft.entityframeworkcore.tools.6.0.10.nupkg.sha512",
