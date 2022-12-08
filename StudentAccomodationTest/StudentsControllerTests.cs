@@ -114,6 +114,44 @@ namespace StudentAccomodationTest
 
 
         //EDIT: POST
+        [TestMethod]
+        public void EditIdDoNotMatch() {
+            var results = (ViewResult)controller.Edit(21, students.Find(s => s.StudentId == 20)).Result;
+            Assert.AreEqual("404",results.ViewName);
+        }
+
+        [TestMethod]
+        public void EditStudentDoesNotExist()
+        {
+            var results = (ViewResult)controller.Edit(19, new Student { StudentId = 19}).Result;
+            Assert.AreEqual("404", results.ViewName);
+        }
+
+        [TestMethod]
+        public void EditRedirectToIndexAction() 
+        {
+            var results = (RedirectToActionResult)controller.Edit(20, students.Find(s => s.StudentId == 20)).Result;
+            Assert.AreEqual("Index",results.ActionName);
+        }
+
+        [TestMethod]
+        public void EditModelStateInvalidStoresViewData()
+        {
+            controller.ModelState.AddModelError("Model state is Invalid", "Required");
+            var results = (ViewResult)controller.Edit(20, students.Find(s => s.StudentId == 20)).Result;
+            Assert.IsNotNull(results.ViewData);
+        }
+
+
+        [TestMethod]
+        public void EditModelStateInvalidReturnsCorrectView() 
+        {
+            controller.ModelState.AddModelError("Model state is Invalid", "Required");
+            var results = (ViewResult)controller.Edit(20, students.Find(s => s.StudentId == 20)).Result;
+            Assert.AreEqual("Edit", results.ViewName);
+        }
+
+
 
     }
 }

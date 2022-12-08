@@ -78,7 +78,7 @@ namespace StudentAccomodation.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-                
+
             ViewData["HouseId"] = new SelectList(_context.Houses, "HouseId","HouseName", student.HouseId);
             return View(student);
         }
@@ -109,7 +109,7 @@ namespace StudentAccomodation.Controllers
         {
             if (id != student.StudentId)
             {
-                return NotFound();
+                return View("404");
             }
 
             if (ModelState.IsValid)
@@ -123,17 +123,17 @@ namespace StudentAccomodation.Controllers
                 {
                     if (!StudentExists(student.StudentId))
                     {
-                        return NotFound();
+                        return View("404");
                     }
                     else
                     {
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("Index",nameof(Index));
             }
             ViewData["HouseId"] = new SelectList(_context.Houses, "HouseId", "HouseName", student.HouseId);
-            return View(student);
+            return View("Edit",student);
         }
 
         // GET: Students/Delete/5
