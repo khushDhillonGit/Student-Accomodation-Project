@@ -102,9 +102,12 @@ footer {
     display: flex;
     align-items: center;
 }
-
+.div-img{
+    height:212px;
+}
 .home img {
     width: 100%;
+    height:100%;
 }
 .left-margin-card{
     margin-left:36px;
