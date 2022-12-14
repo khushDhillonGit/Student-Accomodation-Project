@@ -30,7 +30,9 @@
     @foreach(var item in Model)
     {
         <div class="home col">
-            <img src="~/img/houses/@Html.DisplayFor(modelItem => item.Image)" alt="house-image">
+            <div class="div-img">
+                <img src="~/img/houses/@Html.DisplayFor(modelItem => item.Image)" alt="house-image">
+            </div>
             <div class="home-content">
                 <p class="home-title">@Html.DisplayFor(modelItem => item.HouseName)</p>
                 <ul class="home-list">
@@ -63,7 +65,7 @@
                         <a class="col-3 link-card btn-success" asp-action="Edit" asp-route-id="@item.HouseId">Edit</a> 
                         <a class="col-3 link-card btn-danger" asp-action="Delete" asp-route-id="@item.HouseId">Delete</a>
                     }
-                    <a class="col-3 link-card details-link" asp-action="Details" asp-route-id="@item.HouseId">Details</a> 
+                    <a class="col-3 link-card details-link" asp-controller="Students" asp-action="CreateWithHomeId" asp-route-id="@item.HouseId">Register</a> 
                 </div>
             </div>
         </div>
