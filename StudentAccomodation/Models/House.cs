@@ -53,6 +53,8 @@ namespace StudentAccomodation.Models
         [Display(Name = "Postal Code")]
         public string PostalCode { get; set; }
 
+        public string UserId { get; set; }
+
         //one house can contain many 
         //public List<Student>? Students { get; set; }
         public List<Student>? Students { get; set; }

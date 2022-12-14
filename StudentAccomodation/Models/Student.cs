@@ -27,6 +27,10 @@ namespace StudentAccomodation.Models
         [Range(minimum:1000000,maximum:999999999)]
         public int studentNumber { get; set; }
 
+        public DateTime StartDate { get; set; }
+
+        public string UserId { get; set; }
+
         //one student can only be in one house
         public House? House { get; set; }
     }
