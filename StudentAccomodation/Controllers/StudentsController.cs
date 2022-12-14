@@ -56,6 +56,14 @@ namespace StudentAccomodation.Controllers
             ViewData["HouseId"] = new SelectList(_context.Houses, "HouseId", "HouseName", "MonthRent");
             return View();
         }
+
+        public IActionResult CreateWithHomeId(int id)
+        {
+            //string url = HttpContext.Connection.LocalIpAddress.
+            ViewData["HouseId"] = new SelectList(_context.Houses, "HouseId", "HouseName",id);
+            return View("Create");
+        }
+
         public JsonResult GetHouse(int id) {
 
             var result = from r in _context.Houses
