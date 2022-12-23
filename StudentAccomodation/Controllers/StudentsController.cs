@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authorization;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -15,20 +11,21 @@ namespace StudentAccomodation.Controllers
     public class StudentsController : Controller
     {
         private readonly ApplicationDbContext _context;
+        IConfiguration _iconfiguration;
 
-        public StudentsController(ApplicationDbContext context)
+        public StudentsController(ApplicationDbContext context, IConfiguration iconfiguration)
         {
             _context = context;
+            _iconfiguration = iconfiguration;
         }
 
         // GET: Students
-        [AllowAnonymous]
         public async Task<IActionResult> Index()
         {
             var applicationDbContext = _context.Students.Include(s => s.House);
             return View(await applicationDbContext.ToListAsync());
         }
-        [AllowAnonymous]
+
         // GET: Students/Details/5
         public async Task<IActionResult> Details(int? id)
         {
@@ -60,17 +57,18 @@ namespace StudentAccomodation.Controllers
         public IActionResult CreateWithHomeId(int id)
         {
             //string url = HttpContext.Connection.LocalIpAddress.
-            ViewData["HouseId"] = new SelectList(_context.Houses, "HouseId", "HouseName",id);
+            ViewData["HouseId"] = new SelectList(_context.Houses, "HouseId", "HouseName", id);
             return View("Create");
         }
 
-        public JsonResult GetHouse(int id) {
+        public JsonResult GetHouse(int id)
+        {
 
             var result = from r in _context.Houses
                          where r.HouseId == id
                          select new { r.HouseNumber, r.Street, r.City, r.PostalCode, r.MonthRent };
             return Json(result);
-        } 
+        }
 
         // POST: Students/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
@@ -79,15 +77,17 @@ namespace StudentAccomodation.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("StudentId,HouseId,FirstName,LastName,StudentEmail")] Student student)
         {
-            
+
             if (ModelState.IsValid)
             {
+                student.StartDate = DateTime.Now;
+                student.UserId = getUserId();
                 _context.Add(student);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
 
-            ViewData["HouseId"] = new SelectList(_context.Houses, "HouseId","HouseName", student.HouseId);
+            ViewData["HouseId"] = new SelectList(_context.Houses, "HouseId", "HouseName", student.HouseId);
             return View(student);
         }
 
@@ -138,10 +138,10 @@ namespace StudentAccomodation.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction("Index",nameof(Index));
+                return RedirectToAction("Index", nameof(Index));
             }
             ViewData["HouseId"] = new SelectList(_context.Houses, "HouseId", "HouseName", student.HouseId);
-            return View("Edit",student);
+            return View("Edit", student);
         }
 
         // GET: Students/Delete/5
@@ -160,7 +160,7 @@ namespace StudentAccomodation.Controllers
                 return View("404");
             }
 
-            return View("Delete",student);
+            return View("Delete", student);
         }
 
         // POST: Students/Delete/5
@@ -177,14 +177,40 @@ namespace StudentAccomodation.Controllers
             {
                 _context.Students.Remove(student);
             }
-            
+
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
+
+        public string getUserId()
+        {
+            if (HttpContext.Session.GetString("UserId") == null)
+            {
+                var userId = "";
+                if (User.Identity.IsAuthenticated)
+                {
+                    userId = User.Identity.Name;
+                }
+                else
+                {
+                    userId = Guid.NewGuid().ToString();
+                }
+
+                if (userId != null)
+                {
+                    HttpContext.Session.SetString("UserId", userId);
+
+                }
+            }
+            return HttpContext.Session.GetString("UserId");
+
+        }
+
+
         private bool StudentExists(int id)
         {
-          return _context.Students.Any(e => e.StudentId == id);
+            return _context.Students.Any(e => e.StudentId == id);
         }
     }
 }
