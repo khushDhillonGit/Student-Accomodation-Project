@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authorization;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using StudentAccomodation.Data;
 using StudentAccomodation.Models;
@@ -15,17 +10,18 @@ namespace StudentAccomodation.Controllers
     public class HousesController : Controller
     {
         private readonly ApplicationDbContext _context;
-
-        public HousesController(ApplicationDbContext context)
+        IConfiguration _iconfiguration;
+        public HousesController(ApplicationDbContext context, IConfiguration iconfiguration)
         {
             _context = context;
+            _iconfiguration = iconfiguration;
         }
 
         // GET: Houses
         [AllowAnonymous]
         public async Task<IActionResult> Index()
         {
-              return View(await _context.Houses.ToListAsync());
+            return View(await _context.Houses.ToListAsync());
         }
 
         // GET: Houses/Details/5
@@ -48,7 +44,7 @@ namespace StudentAccomodation.Controllers
         }
 
         // GET: Houses/Create
-        
+
         public IActionResult Create()
         {
             return View();
@@ -59,13 +55,18 @@ namespace StudentAccomodation.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("HouseId,HouseName,OwnerName,OwnerPhone,Occupancy,MonthRent,HouseNumber,Street,City,PostalCode")] House house,IFormFile? Image)
+        public async Task<IActionResult> Create([Bind("HouseId,HouseName,OwnerName,OwnerPhone,Occupancy,MonthRent,HouseNumber,Street,City,PostalCode")] House house, IFormFile? Image)
         {
             if (ModelState.IsValid)
             {
-                if (Image != null) {
+                if (Image != null)
+                {
                     var imgName = SaveImage(Image);
-                    house.Image = imgName;            
+                    house.Image = imgName;
+                }
+                if (!GetUserId().Equals("null"))
+                {
+                    house.UserId = GetUserId();
                 }
                 _context.Add(house);
                 await _context.SaveChangesAsync();
@@ -95,7 +96,7 @@ namespace StudentAccomodation.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("HouseId,HouseName,Image,OwnerName,OwnerPhone,Occupancy,MonthRent,HouseNumber,Street,City,PostalCode")] House house,IFormFile? Image)
+        public async Task<IActionResult> Edit(int id, [Bind("HouseId,HouseName,Image,OwnerName,OwnerPhone,Occupancy,MonthRent,HouseNumber,Street,City,PostalCode")] House house, IFormFile? Image)
         {
             if (id != house.HouseId)
             {
@@ -110,8 +111,6 @@ namespace StudentAccomodation.Controllers
                     var imgName = SaveImage(Image);
                     house.Image = imgName;
                 }
-                
-
                 try
                 {
                     _context.Update(house);
@@ -165,11 +164,28 @@ namespace StudentAccomodation.Controllers
             {
                 _context.Houses.Remove(house);
             }
-            
+
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
-        private static string SaveImage(IFormFile Image) {
+
+        //GET: Houses/MyHouse
+        public async Task<IActionResult> MyHouse()
+        {
+
+            if (User.IsInRole("Administrator"))
+            {
+                return View(await _context.Houses.Include(h => h.Students).ToListAsync());
+            }
+
+            var houses = await _context.Houses.Include(h => h.Students)
+                                        .Where(h => h.UserId == User.Identity.Name)
+                                        .ToListAsync();
+            return View(houses);
+        }
+
+        private static string SaveImage(IFormFile Image)
+        {
 
             var filePath = Path.GetTempFileName();
 
@@ -184,10 +200,24 @@ namespace StudentAccomodation.Controllers
             return fileName;
 
         }
-
-        private bool HouseExists(int id)
+        private string GetUserId()
         {
-          return _context.Houses.Any(e => e.HouseId == id);
+            if (HttpContext.Session.GetString("UserId") == null && User.Identity.IsAuthenticated)
+            {
+                var userId = User.Identity.Name;
+                if (userId != null)
+                {
+                    HttpContext.Session.SetString("UserId", userId);
+                }
+                return HttpContext.Session.GetString("UserId");
+            }
+
+            return "null";
+        }
+
+        public bool HouseExists(int id)
+        { 
+            return _context.Houses.Any(h => h.HouseId == id);
         }
     }
 }
