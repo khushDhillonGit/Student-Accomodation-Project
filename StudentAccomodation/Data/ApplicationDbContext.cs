@@ -9,6 +9,9 @@ namespace StudentAccomodation.Data
         public DbSet<House> Houses { get; set; }
         public DbSet<Student> Students { get; set; }
 
+        public bool HasHouse(int id) {
+            return Houses.Any(h => h.HouseId == id);
+        }
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
         {

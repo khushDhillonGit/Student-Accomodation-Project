@@ -11,7 +11,7 @@ namespace StudentAccomodationTest
     {
 
         private ApplicationDbContext _context;
-        StudentsController controller; 
+        StudentsController controller;
 
         List<Student> students = new List<Student>();
 
@@ -38,7 +38,8 @@ namespace StudentAccomodationTest
             };
             _context.Add(house);
 
-            students.Add(new Student { 
+            students.Add(new Student
+            {
                 StudentId = 20,
                 HouseId = 2,
                 FirstName = "John",
@@ -66,21 +67,23 @@ namespace StudentAccomodationTest
                 StudentEmail = "ramadaniel@gmail.com",
                 studentNumber = 1000002
             });
-            foreach (var student in students) {
+            foreach (var student in students)
+            {
                 _context.Students.Add(student);
             };
             _context.SaveChanges();
-            controller = new StudentsController(_context);
+            //controller = new StudentsController(_context);
         }
 
-        
+
 
         //DELETE: GET
         [TestMethod]
-        public void DeleteRecievesNull() {
+        public void DeleteRecievesNull()
+        {
 
             var result = (ViewResult)controller.Delete(null).Result;
-            Assert.AreEqual("404", result.ViewName); 
+            Assert.AreEqual("404", result.ViewName);
         }
 
         [TestMethod]
@@ -102,36 +105,37 @@ namespace StudentAccomodationTest
         public void DeleteNoStudentFoundViewReturned()
         {
             var result = (ViewResult)controller.Delete(19).Result;
-            Assert.AreEqual("404",result.ViewName);
+            Assert.AreEqual("404", result.ViewName);
         }
 
         [TestMethod]
         public void DeleteCorrectViewReturned()
         {
             var result = (ViewResult)controller.Delete(20).Result;
-            Assert.AreEqual("Delete",result.ViewName);
+            Assert.AreEqual("Delete", result.ViewName);
         }
 
 
         //EDIT: POST
         [TestMethod]
-        public void EditIdDoNotMatch() {
+        public void EditIdDoNotMatch()
+        {
             var results = (ViewResult)controller.Edit(21, students.Find(s => s.StudentId == 20)).Result;
-            Assert.AreEqual("404",results.ViewName);
+            Assert.AreEqual("404", results.ViewName);
         }
 
         [TestMethod]
         public void EditStudentDoesNotExist()
         {
-            var results = (ViewResult)controller.Edit(19, new Student { StudentId = 19}).Result;
+            var results = (ViewResult)controller.Edit(19, new Student { StudentId = 19 }).Result;
             Assert.AreEqual("404", results.ViewName);
         }
 
         [TestMethod]
-        public void EditRedirectToIndexAction() 
+        public void EditRedirectToIndexAction()
         {
             var results = (RedirectToActionResult)controller.Edit(20, students.Find(s => s.StudentId == 20)).Result;
-            Assert.AreEqual("Index",results.ActionName);
+            Assert.AreEqual("Index", results.ActionName);
         }
 
         [TestMethod]
@@ -144,7 +148,7 @@ namespace StudentAccomodationTest
 
 
         [TestMethod]
-        public void EditModelStateInvalidReturnsCorrectView() 
+        public void EditModelStateInvalidReturnsCorrectView()
         {
             controller.ModelState.AddModelError("Model state is Invalid", "Required");
             var results = (ViewResult)controller.Edit(20, students.Find(s => s.StudentId == 20)).Result;
