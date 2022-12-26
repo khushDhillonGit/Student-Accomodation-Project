@@ -274,7 +274,7 @@ namespace StudentAccomodation.Data.Migrations
 
                     b.HasKey("HouseId");
 
-                    b.ToTable("Houses");
+                    b.ToTable("Houses", (string)null);
                 });
 
             modelBuilder.Entity("StudentAccomodation.Models.Student", b =>
@@ -314,7 +314,7 @@ namespace StudentAccomodation.Data.Migrations
 
                     b.HasIndex("HouseId");
 
-                    b.ToTable("Students");
+                    b.ToTable("Students", (string)null);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
