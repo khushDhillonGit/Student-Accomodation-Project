@@ -55,7 +55,7 @@ namespace StudentAccomodation.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("HouseId,HouseName,OwnerName,OwnerPhone,Occupancy,MonthRent,HouseNumber,Street,City,PostalCode")] House house, IFormFile? Image)
+        public async Task<IActionResult> Create([Bind("HouseId,HouseName,OwnerName,OwnerPhone,Occupancy,MonthRent,HouseNumber,Street,City,PostalCode,UserId")] House house, IFormFile? Image)
         {
             if (ModelState.IsValid)
             {
@@ -65,7 +65,6 @@ namespace StudentAccomodation.Controllers
                     house.Image = imgName;
                 }
                 house.UserId = GetUserId();
-                
                 _context.Add(house);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
