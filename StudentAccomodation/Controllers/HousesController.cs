@@ -55,7 +55,7 @@ namespace StudentAccomodation.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("HouseId,HouseName,OwnerName,OwnerPhone,Occupancy,MonthRent,HouseNumber,Street,City,PostalCode,UserId")] House house, IFormFile? Image)
+        public async Task<IActionResult> Create([Bind("HouseId,HouseName,OwnerName,OwnerPhone,Occupancy,MonthRent,HouseNumber,Street,City,PostalCode")] House house, IFormFile? Image)
         {
             if (ModelState.IsValid)
             {
@@ -64,7 +64,10 @@ namespace StudentAccomodation.Controllers
                     var imgName = SaveImage(Image);
                     house.Image = imgName;
                 }
-                house.UserId = GetUserId();
+                if (!GetUserId().Equals("null"))
+                {
+                    house.UserId = GetUserId();
+                }
                 _context.Add(house);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -166,6 +169,20 @@ namespace StudentAccomodation.Controllers
             return RedirectToAction(nameof(Index));
         }
 
+        //GET: Houses/MyHouse
+        public async Task<IActionResult> MyHouse()
+        {
+
+            if (User.IsInRole("Administrator"))
+            {
+                return View(await _context.Houses.Include(h => h.Students).ToListAsync());
+            }
+
+            var houses = await _context.Houses.Include(h => h.Students)
+                                        .Where(h => h.UserId == User.Identity.Name)
+                                        .ToListAsync();
+            return View(houses);
+        }
 
         private static string SaveImage(IFormFile Image)
         {
@@ -192,9 +209,10 @@ namespace StudentAccomodation.Controllers
                 {
                     HttpContext.Session.SetString("UserId", userId);
                 }
+                return HttpContext.Session.GetString("UserId");
             }
 
-            return HttpContext.Session.GetString("UserId");
+            return "null";
         }
 
         public bool HouseExists(int id)
