@@ -23,15 +23,18 @@ namespace StudentAccomodation.Areas.Identity.Pages.Account
         private readonly IUserEmailStore<IdentityUser> _emailStore;
         private readonly ILogger<RegisterModel> _logger;
         private readonly IEmailSender _emailSender;
+        private readonly RoleManager<IdentityRole> _roleManager;
 
         public RegisterModel(
             UserManager<IdentityUser> userManager,
             IUserStore<IdentityUser> userStore,
             SignInManager<IdentityUser> signInManager,
             ILogger<RegisterModel> logger,
-            IEmailSender emailSender)
+            IEmailSender emailSender,
+            RoleManager<IdentityRole> roleManager)
         {
             _userManager = userManager;
+            _roleManager = roleManager;
             _userStore = userStore;
             _emailStore = GetEmailStore();
             _signInManager = signInManager;
@@ -99,11 +102,11 @@ namespace StudentAccomodation.Areas.Identity.Pages.Account
 
         }
 
-        public string AccountType { get; set; }
         
         public async Task OnGetAsync(string returnUrl = null)
         {
-            ViewData["AccountType"] = new SelectList(new List<string> { "Student", "Owner" });
+            //ViewData["AccountType"] = new SelectList(new List<string> { "Student","Owner"});
+            ViewData["AccountType"] = new SelectList(_roleManager.Roles.Where(r => r.Id != "1"));
             ReturnUrl = returnUrl;
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
         }

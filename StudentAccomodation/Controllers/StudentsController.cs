@@ -33,10 +33,18 @@ namespace StudentAccomodation.Controllers
             {
                 return NotFound();
             }
-
-            var student = await _context.Students
+            var student = _context.Students
                 .Include(s => s.House)
-                .FirstOrDefaultAsync(m => m.StudentId == id);
+                .Where(m => m.StudentId == id);
+
+            foreach (var s in student.OrderBy(s => s.FirstName).Where(s => s.FirstName.StartsWith('w'))) { 
+
+            }
+            string[] arr = new string[5];
+
+            List<int> list = new();
+            list.Sort();
+
             if (student == null)
             {
                 return NotFound();
@@ -50,7 +58,7 @@ namespace StudentAccomodation.Controllers
         {
             //string url = HttpContext.Connection.LocalIpAddress.
 
-            ViewData["HouseId"] = new SelectList(_context.Houses, "HouseId", "HouseName", "MonthRent");
+            ViewData["HouseId"] = new SelectList(_context.Houses, "HouseId", "HouseName");
             return View();
         }
 
@@ -80,6 +88,7 @@ namespace StudentAccomodation.Controllers
 
             if (ModelState.IsValid)
             {
+
                 student.StartDate = DateTime.Now;
                 student.UserId = getUserId();
                 _context.Add(student);
@@ -173,6 +182,7 @@ namespace StudentAccomodation.Controllers
                 return Problem("Entity set 'ApplicationDbContext.Students'  is null.");
             }
             var student = await _context.Students.FindAsync(id);
+
             if (student != null)
             {
                 _context.Students.Remove(student);
