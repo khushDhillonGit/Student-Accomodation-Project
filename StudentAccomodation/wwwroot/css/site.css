@@ -26,7 +26,7 @@ body {
 }
 
 .navbar-brand {
-    width:8%;
+    width:6rem;
 }
 
 .nav-link:hover,
@@ -39,13 +39,13 @@ body {
 .text-sec-color {
     color: #3f586c;
 }
+
 .para-text {
     margin-top: 32px;
     margin-bottom: 32px;
     letter-spacing: -0.5px;
-    font-size: 20px;
     line-height: 1.4;
-    color:green;
+    color: green;
 }
 
 .log-link {
@@ -65,7 +65,13 @@ footer {
 .footer {
     position:relative!important;
 }
+.navbar-nav .nav-link {
+    padding-left: 6px;
+}
 
+.navbar-collapse {
+    transition: all 0.26s ease-in-out 0s;
+}
 
 
 .heading-primary {
