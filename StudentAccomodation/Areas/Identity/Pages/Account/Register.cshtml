@@ -3,101 +3,10 @@
 @{
     ViewData["Title"] = "Register";
 }
-<style>
-    .form {
-        background-color: rgb(68 95 118);
-        border-radius: 10px;
-        backdrop-filter: blur(10px);
-        border: 2px solid rgba(255,255,255,0.1);
-        box-shadow: 0 0 40px rgba(8,7,16,0.6);
-        padding: 50px 35px;
-    }
-
-        .form * {
-            font-family: 'Poppins',sans-serif;
-            color: #ffffff;
-            letter-spacing: 0.5px;
-            outline: none;
-            border: none;
-        }
-
-        .form h3 {
-            font-size: 32px;
-            font-weight: 500;
-            line-height: 42px;
-            text-align: center;
-        }
-
-    label {
-        display: block;
-        margin-top: 30px;
-        font-size: 16px;
-        font-weight: 500;
-    }
-
-    input {
-        display: block;
-        height: 50px;
-        width: 100%;
-        background-color: rgba(255,255,255,0.07);
-        border-radius: 3px;
-        padding: 0 10px;
-        margin-top: 8px;
-        font-size: 14px;
-        font-weight: 300;
-    }
-
-    ::placeholder {
-        color: #e5e5e5;
-    }
-
-    .button {
-        margin-top: 50px;
-        width: 100%;
-        background-color: #8eb97e;
-        color: white;
-        padding: 15px 0;
-        font-size: 18px;
-        font-weight: 600;
-        border-radius: 5px;
-        cursor: pointer;
-    }
-
-    .social {
-        margin-top: 30px;
-        display: flex;
-    }
-
-        .social div {
-            background: red;
-            width: 150px;
-            border-radius: 3px;
-            padding: 5px 10px 10px 5px;
-            background-color: rgba(255,255,255,0.27);
-            color: #eaf0fb;
-            text-align: center;
-        }
-
-            .social div:hover {
-                background-color: rgba(255,255,255,0.47);
-            }
-
-        .social .fb {
-            margin-left: 25px;
-        }
-
-        .social i {
-            margin-right: 4px;
-        }
-        .f-select, .f-select option{
-        color: #445f76;
-        }
-
-</style>
 
 <div class="row p-3">
     <div class="col-md-8 col-lg-4 m-auto">
-        <form class="form" id="registerForm" asp-route-returnUrl="@Model.ReturnUrl" method="post">
+        <form class="m-form" id="registerForm" asp-route-returnUrl="@Model.ReturnUrl" method="post">
             <h2>Register</h2>
             <hr />
             @*@{
@@ -123,7 +32,7 @@
                 <select asp-for="Input.UserRole" asp-items="ViewBag.AccountType" class="form-select mt-2 f-select"></select>
          
                 <label asp-for="Input.Email"></label>
-                <input asp-for="Input.Email"value="ks1@gc.ca" autocomplete="username" aria-required="true" />
+                <input asp-for="Input.Email" autocomplete="username" aria-required="true" />
                 <span asp-validation-for="Input.Email" class="text-danger"></span>
           
                 <label asp-for="Input.Password"></label>
