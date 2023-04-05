@@ -4,7 +4,7 @@
     ViewData["Title"] = "Index";
 }
 
-<div class="container mt-5 px-4">
+<div class="container mt-5 px-5">
     <div class="row house-section">
         <div class="img d-flex align-items-center col-md-6 col-sm-12">
             <img class="img-fluid" src="/index-house.png"> 
@@ -24,8 +24,9 @@
             
             <div class="row gap-4">
                 
-                <div class="col"><a asp-action="Create" id="btn-create" onclick="check()" class="w-100 btn btn-success">Add Home</a></div>
-                <div class="col"><a href="#house-available-section" class="w-100 btn btn-danger">See Available Homes</a></div>
+
+                <div class="col-sm-12 col-md-6"><a asp-action="Create" id="btn-create" onclick="check()" class="w-100 btn btn-success">Add Home</a></div>
+                <div class="col-sm-12 col-md-6"><a href="#house-available-section" class="w-100 btn btn-danger">See Available Homes</a></div>
             </div>
         </div>
     </div>

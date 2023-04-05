@@ -190,10 +190,10 @@ strong {
 .left-container {
     background: #445f76;
     overflow: hidden;
-    padding: 40px 0 0 0;
-    position: relative;
+    /*padding: 40px 0 0 0;*/
+    /*position: relative;*/
     text-align: center;
-    width: 300px;
+    /*width: 300px;*/
 }
 
     .left-container h1 {
@@ -232,9 +232,9 @@ strong {
 
 .right-container {
     background: #83b271;
-    display: grid;
-    grid-template-areas: "." ".";
-    width: 500px;
+    /*display: grid;*/
+    /*grid-template-areas: "." ".";*/
+    /*width: 500px;*/
 }
 
     .right-container h1:nth-of-type(1) {
@@ -271,7 +271,7 @@ strong {
     .right-container label,
     .right-container input,
     .right-container .house-photo {
-        width: 246px;
+        /*width: 246px;*/
     }
 
   
@@ -287,10 +287,10 @@ strong {
 }
 
     .right-container footer {
-        align-items: center;
-        background: #fff;
-        display: grid;
-        padding: 0px 40px;
+        /*align-items: center;*/
+        /*background: #fff;*/
+        /*display: grid;*/
+        /*padding: 0px 40px;*/
     }
 
         .right-container footer button {
@@ -308,11 +308,12 @@ strong {
     margin-bottom: 5px;
 }
 .submit-input {
-    width:28%!important;
+    /*width:28%!important;*/
     color:white!important;
 }
 .btn-trans {
     border: 2px solid #83b271;
+    background:white;
     color: #223e57;
 }
     .btn-trans:hover,
@@ -393,6 +394,20 @@ strong {
 ::placeholder {
     color: #e5e5e5;
 }
+@media(max-width:500px) {
+    .nor-link {
+        border: none;
+        border-radius: 2px;
+        background-color: #83b271;
+        color: white !important;
+    }
+
+    .right-container input {
+        margin-bottom: 1rem;
+    }
+
+}
+
 
 .m-form .button {
     margin-top: 50px;

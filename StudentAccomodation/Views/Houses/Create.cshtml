@@ -4,124 +4,231 @@
     ViewData["Title"] = "Add Rental Property";
 }
 
-<div class="container house-container">
-<div class="form-container">
-  <div class="left-container">
-      <div>
-          <ion-icon class="icon" name="home-outline"></ion-icon>
-           <h1>Add Home</h1>
-      </div>
-      <div style="padding:5px;">
-          <img class="uploaded-img" src="">
-      </div>
-    <div class="img">
-      <img src="~/create-house-img.png"/>
+<div class="container px-4">
+    <div class="row mt-4">
+        <div class="left-container col-md-4 col-sm-12 d-md-block d-none">
+            <div class="row">
+
+                <div class="col">
+                    <ion-icon class="icon" name="home-outline"></ion-icon>
+                    <h1>Add Home</h1>
+                </div>
+                <div class="col" style="padding:5px;">
+                    <img class="uploaded-img" src="">
+                </div>
+                <div class="img col">
+                    <img src="~/create-house-img.png" />
+                </div>
+
+            </div>
+
+        </div>
+        <div class="right-container col-md-8 col-sm-12">
+            <form asp-action="Create" class="create-form" enctype="multipart/form-data">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <header>
+                    <h1 class="display-3">Ready to have some guests?</h1>
+                    
+                    <div class="row">
+                        <div class="form-group col-md-6 col-sm-12">
+                            <label asp-for="HouseName" class="control-label"></label>
+                            <input asp-for="HouseName" class="form-control" />
+                            <span asp-validation-for="HouseName" class="text-danger"></span>
+                        </div>
+                        <div class="form-group col-md-6 col-sm-12">
+                            <label asp-for="Image" class="control-label"></label>
+                            <input asp-for="Image" class="form-control input-file" type="file" />
+                            <span asp-validation-for="Image" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="form-group col-md-6 col-sm-12">
+                            <label asp-for="OwnerName" class="control-label"></label>
+                            <input asp-for="OwnerName" class="form-control" />
+                            <span asp-validation-for="OwnerName" class="text-danger"></span>
+                        </div>
+                        <div class="form-group col-md-6 col-sm-12">
+                            <label asp-for="OwnerPhone" class="control-label"></label>
+                            <input asp-for="OwnerPhone" class="form-control" />
+                            <span asp-validation-for="OwnerPhone" class="text-danger"></span>
+                        </div>
+                  
+
+                        <div class="form-group col-md-6 col-sm-12">
+                            <label asp-for="Occupancy" class="control-label"></label>
+                            <input asp-for="Occupancy" class="form-control" />
+                            <span asp-validation-for="Occupancy" class="text-danger"></span>
+                        </div>
+                        <div class="form-group col-md-6 col-sm-12">
+                            <label asp-for="MonthRent" class="control-label"></label>
+                            <input asp-for="MonthRent" class="form-control" />
+                            <span asp-validation-for="MonthRent" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="row">
+
+                        <div class="form-group col-md-6 col-sm-12">
+                            <label asp-for="HouseNumber" class="control-label"></label>
+                            <input asp-for="HouseNumber" class="form-control" />
+                            <span asp-validation-for="HouseNumber" class="text-danger"></span>
+                        </div>
+                        <div class="form-group col-md-6 col-sm-12">
+                            <label asp-for="Street" class="control-label"></label>
+                            <input asp-for="Street" class="form-control" />
+                            <span asp-validation-for="Street" class="text-danger"></span>
+                        </div>
+               
+                        <div class="form-group col-md-6 col-sm-12">
+                            <label asp-for="City" class="control-label"></label>
+                            <input asp-for="City" class="form-control" />
+                            <span asp-validation-for="City" class="text-danger"></span>
+                        </div>
+                        <div class="form-group col-md-6 col-sm-12">
+                            <label asp-for="PostalCode" class="control-label"></label>
+                            <input asp-for="PostalCode" class="form-control" />
+                            <span asp-validation-for="PostalCode" class="text-danger"></span>
+                        </div>
+                    </div>
+                </header>
+                <footer>
+                    <div class="row p-md-0 px-4 gap-3">
+                        <div class="col-sm-6 col">
+
+                        <a asp-action="Index" class="btn btn-trans w-100">Back to List</a>
+                        </div>
+                        <div class="col-sm-6 col">
+
+                        <input type="submit" value="Create" class="details-link w-100 submit-input" />
+
+                        </div>
+                    </div>
+                </footer>
+            </form>
+        </div>
     </div>
-  </div>
-  <div class="right-container">
-    <form asp-action="Create" class="create-form" enctype="multipart/form-data">
-    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-    <header>
-      <h1>Ready to have some guests?</h1>
-        
-            <div class="set">
-
-            <div class="form-group">
-                <label asp-for="HouseName" class="control-label"></label>
-                <input asp-for="HouseName" class="form-control" />
-                <span asp-validation-for="HouseName" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Image" class="control-label"></label>
-                <input asp-for="Image" class="form-control input-file" type="file"/>
-                <span asp-validation-for="Image" class="text-danger"></span>
-            </div>
-            </div>
-            <div class="set">
-
-            <div class="form-group">
-                <label asp-for="OwnerName" class="control-label"></label>
-                <input asp-for="OwnerName" class="form-control" />
-                <span asp-validation-for="OwnerName" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="OwnerPhone" class="control-label"></label>
-                <input asp-for="OwnerPhone" class="form-control" />
-                <span asp-validation-for="OwnerPhone" class="text-danger"></span>
-            </div>
-            </div>
-            <div class="set">
-
-            <div class="form-group">
-                <label asp-for="Occupancy" class="control-label"></label>
-                <input asp-for="Occupancy" class="form-control" />
-                <span asp-validation-for="Occupancy" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="MonthRent" class="control-label"></label>
-                <input asp-for="MonthRent" class="form-control" />
-                <span asp-validation-for="MonthRent" class="text-danger"></span>
-            </div>
-            </div>
-            <div class="set">
-
-            <div class="form-group">
-                <label asp-for="HouseNumber" class="control-label"></label>
-                <input asp-for="HouseNumber" class="form-control" />
-                <span asp-validation-for="HouseNumber" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Street" class="control-label"></label>
-                <input asp-for="Street" class="form-control" />
-                <span asp-validation-for="Street" class="text-danger"></span>
-            </div>
-            </div>
-            <div class="set">
-                <div class="form-group">
-                <label asp-for="City" class="control-label"></label>
-                <input asp-for="City" class="form-control" />
-                <span asp-validation-for="City" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="PostalCode" class="control-label"></label>
-                <input asp-for="PostalCode" class="form-control" />
-                <span asp-validation-for="PostalCode" class="text-danger"></span>
-            </div>
-            </div>
-    </header>
-    <footer>
-      <div class="set">
-          <a asp-action="Index" class="btn btn-trans">Back to List</a>
-          <input type="submit" value="Create" class="details-link submit-input" />
-      </div>
-    </footer>
-    </form>
-  </div>
 </div>
-</div>
+
+@*<div class="container house-container">
+    <div class="form-container row">
+        <div class="left-container">
+            <div>
+                <ion-icon class="icon" name="home-outline"></ion-icon>
+                <h1>Add Home</h1>
+            </div>
+            <div style="padding:5px;">
+                <img class="uploaded-img" src="">
+            </div>
+            <div class="img">
+                <img src="~/create-house-img.png" />
+            </div>
+        </div>
+        <div class="right-container">
+            <form asp-action="Create" class="create-form" enctype="multipart/form-data">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <header>
+                    <h1>Ready to have some guests?</h1>
+
+                    <div class="set">
+
+                        <div class="form-group">
+                            <label asp-for="HouseName" class="control-label"></label>
+                            <input asp-for="HouseName" class="form-control" />
+                            <span asp-validation-for="HouseName" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Image" class="control-label"></label>
+                            <input asp-for="Image" class="form-control input-file" type="file" />
+                            <span asp-validation-for="Image" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="set">
+
+                        <div class="form-group">
+                            <label asp-for="OwnerName" class="control-label"></label>
+                            <input asp-for="OwnerName" class="form-control" />
+                            <span asp-validation-for="OwnerName" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="OwnerPhone" class="control-label"></label>
+                            <input asp-for="OwnerPhone" class="form-control" />
+                            <span asp-validation-for="OwnerPhone" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="set">
+
+                        <div class="form-group">
+                            <label asp-for="Occupancy" class="control-label"></label>
+                            <input asp-for="Occupancy" class="form-control" />
+                            <span asp-validation-for="Occupancy" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="MonthRent" class="control-label"></label>
+                            <input asp-for="MonthRent" class="form-control" />
+                            <span asp-validation-for="MonthRent" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="set">
+
+                        <div class="form-group">
+                            <label asp-for="HouseNumber" class="control-label"></label>
+                            <input asp-for="HouseNumber" class="form-control" />
+                            <span asp-validation-for="HouseNumber" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Street" class="control-label"></label>
+                            <input asp-for="Street" class="form-control" />
+                            <span asp-validation-for="Street" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="set">
+                        <div class="form-group">
+                            <label asp-for="City" class="control-label"></label>
+                            <input asp-for="City" class="form-control" />
+                            <span asp-validation-for="City" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="PostalCode" class="control-label"></label>
+                            <input asp-for="PostalCode" class="form-control" />
+                            <span asp-validation-for="PostalCode" class="text-danger"></span>
+                        </div>
+                    </div>
+                </header>
+                <footer>
+                    <div class="set">
+                        <a asp-action="Index" class="btn btn-trans">Back to List</a>
+                        <input type="submit" value="Create" class="details-link submit-input" />
+                    </div>
+                </footer>
+            </form>
+        </div>
+    </div>
+</div>*@
 
 <!-- added event listener to display selected user image on left-container-->
 <script>
-var image = document.querySelector('.uploaded-img');
-var input = document.querySelector('.input-file');
+    var image = document.querySelector('.uploaded-img');
+    var input = document.querySelector('.input-file');
 
-input.addEventListener("change", (e) => { 
-     { 
-        image.file = input.files[0];
-        const h2 = document.createElement("h6");
-        h2.style.color = "white";
-        h2.textContent = "Your House Image!";
-        image.parentElement.appendChild(h2);
+    input.addEventListener("change", (e) => {
+        {
+            image.file = input.files[0];
+            const h2 = document.createElement("h6");
+            h2.style.color = "white";
+            h2.textContent = "Your House Image!";
+            image.parentElement.appendChild(h2);
 
-        const reader = new FileReader();
-        reader.onload = (e) => { image.src = e.target.result; };
-        reader.readAsDataURL(input.files[0]);
-    }
-});
+            const reader = new FileReader();
+            reader.onload = (e) => { image.src = e.target.result; };
+            reader.readAsDataURL(input.files[0]);
+        }
+    });
 
 
 
 </script>
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
 }
