@@ -136,6 +136,7 @@ strong {
     border-radius: 12px;
     overflow: hidden;
     transition: all 0.4s;
+    padding:0;
 }
 
 .home-content {
@@ -377,7 +378,7 @@ strong {
         font-weight: 500;
     }
 
-    .m-form input {
+    .m-form .input {
         display: block;
         height: 50px;
         width: 100%;

@@ -3,33 +3,39 @@
 @{
     ViewData["Title"] = "Index";
 }
-<div class="container mt-5">
-    <div class="row gap-5 house-section">
-        <div class="img col">
+
+<div class="container mt-5 px-4">
+    <div class="row house-section">
+        <div class="img d-flex align-items-center col-md-6 col-sm-12">
             <img class="img-fluid" src="/index-house.png"> 
         </div>
-        <div class="col house-content">
-            <h2 class="heading-primary display-4">Home Sweet Home!</h2>
-            <p class="para-text">
-                It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using. 
+        <div class="col-md-6 col-sm-12 house-content">
+            <h2 class="heading-primary display-3">Home Sweet Home!</h2>
+            <p class="para-text lead">
+                Here Students can find houses according to their needs. All listings are verified and students can directly contact onwers and then can register for the house to let the owner know and owners can approve the request.
             </p>
-            <p class="para-text">
-                Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover 
+            <p class="para-text lead">
+                Home Owners can register their home, free of cost by filing a simple form with all the required information. You can also upload the latest images, once the verification is done the listing will be live on the website and students will be able to register.
             </p>
+            @if (ViewBag.Error != null)
+            {
+                <div onclick="foo.call(this)" class="alert alert-danger">@ViewBag.Error  (Tap to close)</div>
+            }
+            
             <div class="row gap-4">
-                    <a asp-action="Create" class="col-4 btn btn-success">Add Home</a>
-                    <a href="#house-available-section" class="col-4 btn btn-danger">See Available Homes</a>
+                
+                <div class="col"><a asp-action="Create" id="btn-create" onclick="check()" class="w-100 btn btn-success">Add Home</a></div>
+                <div class="col"><a href="#house-available-section" class="w-100 btn btn-danger">See Available Homes</a></div>
             </div>
         </div>
     </div>
 
 <div id="house-available-section">
-
 <h1 class="text-center heading-primary">Available Homes</h1>
-<div id="home-cards" class="row row-cols-sm-1 row-cols-md-3 row-cols-lg-4">
+<div id="home-cards" class="row">
     @foreach(var item in Model)
     {
-        <div class="home col">
+        <div class="home col-sm-12 col-md-3">
             <div class="div-img">
                 <img src="~/img/houses/@Html.DisplayFor(modelItem => item.Image)" alt="house-image">
             </div>
@@ -60,7 +66,7 @@
                     </li>
                 </ul>
                 <div class="row justify-content-evenly">
-                    @if (User.Identity.IsAuthenticated)
+                    @if (User.IsInRole("Administrator"))
                     {
                         <a class="col-3 link-card btn-success" asp-action="Edit" asp-route-id="@item.HouseId">Edit</a> 
                         <a class="col-3 link-card btn-danger" asp-action="Delete" asp-route-id="@item.HouseId">Delete</a>
@@ -70,6 +76,9 @@
             </div>
         </div>
     }
-</div>
-</div>
-</div>
+</div>        
+<script>
+   function foo(){
+        $(this).css('display','none');
+   }
+</script>

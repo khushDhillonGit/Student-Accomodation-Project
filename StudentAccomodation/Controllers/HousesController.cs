@@ -6,7 +6,7 @@ using StudentAccomodation.Models;
 
 namespace StudentAccomodation.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = "Administrator")]
     public class HousesController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -21,6 +21,7 @@ namespace StudentAccomodation.Controllers
         [AllowAnonymous]
         public async Task<IActionResult> Index()
         {
+            ViewBag.Error = TempData["Error"];
             return View(await _context.Houses.ToListAsync());
         }
 
@@ -44,9 +45,13 @@ namespace StudentAccomodation.Controllers
         }
 
         // GET: Houses/Create
-
+        [AllowAnonymous]
         public IActionResult Create()
         {
+            if (!User.Identity.IsAuthenticated || User.IsInRole("Student")) {
+                TempData["Error"] = "Register As Owner to Add house";
+                return RedirectToAction(nameof(Index));
+            }
             return View();
         }
 
@@ -55,6 +60,7 @@ namespace StudentAccomodation.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [AllowAnonymous]
         public async Task<IActionResult> Create([Bind("HouseId,HouseName,OwnerName,OwnerPhone,Occupancy,MonthRent,HouseNumber,Street,City,PostalCode")] House house, IFormFile? Image)
         {
             if (ModelState.IsValid)
@@ -74,7 +80,7 @@ namespace StudentAccomodation.Controllers
             }
             return View(house);
         }
-
+        
         // GET: Houses/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
