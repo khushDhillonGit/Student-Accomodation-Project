@@ -311,6 +311,11 @@ strong {
     /*width:28%!important;*/
     color:white!important;
 }
+.primary-color {
+    color: #fff !important;
+    background-color: #3f586c !important;
+}
+
 .btn-trans {
     border: 2px solid #83b271;
     background:white;
